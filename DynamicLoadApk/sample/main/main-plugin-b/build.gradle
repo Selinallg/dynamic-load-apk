@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "19.1.0"
+    compileSdk 33
 
     defaultConfig {
-        minSdkVersion 8
-        targetSdkVersion 19
+        minSdkVersion 21
+        targetSdkVersion 26
+        applicationId "com.ryg.dynamicload.sample.mainpluginb"
     }
 
     buildTypes {
@@ -33,13 +33,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    provided project(':lib')
-    provided files('../main-host/build/libs/main-host.jar')
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':lib')
+    implementation project(':main-host')
 }
-
-task beforeBuild(dependsOn: ':main-host:buildLib') << {
-    println 'do it before build'
-}
-
-preBuild.dependsOn beforeBuild
